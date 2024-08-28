@@ -4,12 +4,12 @@ input,
 select,
 textarea {
   font-family: "Ubuntu", sans-serif;
+  font-display: swap;
   background-color: #000000;
   color: #ffffff;
   margin: 0;
   padding: 0;
 }
-
 .container {
   display: flex;
   flex-direction: column;

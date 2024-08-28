@@ -1,11 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
+  const dataDisplay = document.getElementById("dataDisplay");
+  dataDisplay.innerHTML = `
+      <table>
+          <tr><th>Chain</th><th>Height</th></tr>
+          <tr><td colspan="2">Loading...</td></tr>
+      </table>
+  `;
   fetchData();
 });
 
 function fetchData() {
-  const dataDisplay = document.getElementById("dataDisplay");
-  dataDisplay.textContent = "Loading...";
-
   const proxyUrl = "https://throbbing-rain-bdd7.alicexbt.workers.dev/?url=";
   const targetUrl = "http://172.105.148.135/";
   const urlWithCacheBuster =
@@ -18,7 +22,7 @@ function fetchData() {
     })
     .catch((error) => {
       console.error("Error fetching data:", error);
-      showError("Failed to fetch data. Please try again later.");
+      showError("Failed to fetch data. Try refreshing the page.");
     });
 }
 
@@ -36,13 +40,13 @@ function parseData(htmlContent) {
       const height = parts[1] ? parts[1].trim() : "";
 
       displayHtml += `<tr>
-                <td>${chainName}</td>
-                <td>${
-                  height
-                    ? height
-                    : '<span class="no-blocks">No blocks detected</span>'
-                }</td>
-            </tr>`;
+              <td>${chainName}</td>
+              <td>${
+                height
+                  ? height
+                  : '<span class="no-blocks">No blocks detected</span>'
+              }</td>
+          </tr>`;
     }
   }
 
